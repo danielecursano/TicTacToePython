@@ -95,10 +95,17 @@ class Game:
         if self.checkBox(box):
             self.boxPlayed[player].append(box)
             board = self.draw()
-            i = 0
-            for _ in range(3):
-                print(board[i:i+3])
-                i += 3
+            for k in range(len(board)):
+                if board[k] == 'x':
+                    board[k] = '\U0000274C'
+                if board[k] == 'o':
+                    board[k] = '\U00002B55'
+                if board[k] == ' ':
+                    board[k] = '\U000025FE'
+            for i in range(len(board)):
+                print(board[i], end=' ')
+                if i in (2, 5, 8):
+                    print()
             print('------------------------')
             return True
         else:
@@ -143,7 +150,3 @@ class Game:
             message = '{} WINS'.format(players[not i])
 
         print(message) 
-        return 
-
-
-
